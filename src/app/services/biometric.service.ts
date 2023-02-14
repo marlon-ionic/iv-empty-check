@@ -26,6 +26,11 @@ export class BiometricService {
     this.vault = Capacitor.isNativePlatform() ? new Vault(config) : new BrowserVault(config);
   }
 
+  async init(): Promise<void> {
+    const isEmpty = await this.vault.isEmpty();
+    this.isAuthenticated.next(!isEmpty);
+  }
+
   async isEmpty():Promise<boolean> {
     return await this.vault.isEmpty();
   }
@@ -49,6 +54,10 @@ export class BiometricService {
       this.isAuthenticated.next(false);
     }
     return token;
+}
+
+async getToken(): Promise<string|null> {
+  return await this.vault.getValue(TOKEN_KEY);
 }
 
 login(credentials: { email: string, password: string }): Observable<any> {

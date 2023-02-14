@@ -1,25 +1,30 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-title>
-      Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" >
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+    <ion-toolbar color="tertiary">
+      <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div *ngIf="isAuthenticated" class="login-status">
-    <h2>You're Logged In!</h2>
-    <ion-button class="ion-margin" color="success" (click)="goTologin()">Go to Login</ion-button>
-    <ion-button class="ion-margin" color="danger" (click)="reset()">Reset</ion-button>
+  <div *ngIf="isAuthenticated" class="login-status ion-padding">
+    <h2>Vault is NOT Empty!</h2>
+    <p *ngIf="token" class="token">{{token}}</p>
+    <div>
+      <ion-button class="ion-margin" color="primary" (click)="getToken()">Get Token</ion-button>
+      <ion-button class="ion-margin" color="success" (click)="goTologin()">Go to Login</ion-button>
+      <ion-button class="ion-margin" color="danger" (click)="reset()">Reset</ion-button>
+    </div>
+
   </div>
-  <div *ngIf="!isAuthenticated" class="login-status">
-    <h2 color="danger">You are NOT Logged In!</h2>
+  <div *ngIf="!isAuthenticated" class="login-status ion-padding">
+    <h2 color="danger">Vault is Empty!</h2>
     <ion-button class="ion-margin" color="success" (click)="goTologin()">Go to Login</ion-button>
   </div>
 </ion-content>

@@ -82,7 +82,7 @@ export class LoginPage implements OnInit {
 	}
 
   private async navigateToApp() {
-    await this.router.navigateByUrl('/tabs', { replaceUrl: true });
+    await this.router.navigateByUrl('/home', { replaceUrl: true });
   }
 
 	// Easy access for form fields

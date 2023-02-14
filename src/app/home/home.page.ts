@@ -9,9 +9,10 @@ import { BiometricService } from '../services/biometric.service';
 })
 export class HomePage implements OnInit {
   isAuthenticated = false;
+  token?:string;
   constructor(private biometricService: BiometricService, private router: Router) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.biometricService.isAuthenticated$.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
   }
 
@@ -25,7 +26,10 @@ export class HomePage implements OnInit {
 
   async reset(){
     await this.biometricService.clear();
-
+  }
+  async getToken() {
+    const token = await this.biometricService.getToken();
+    this.token = token === null? undefined: token;
   }
 
 }
