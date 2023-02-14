@@ -1,0 +1,7 @@
+{
+  "name": "iv-empty-check",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
