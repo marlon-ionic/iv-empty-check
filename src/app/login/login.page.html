@@ -1,0 +1,28 @@
+<ion-content>
+  <div class="login-container">
+    <ion-card class="ion-padding">
+      <form (ngSubmit)="login()" [formGroup]="credentials">
+        <div class="input-group">
+          <ion-item>
+            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+          </ion-item>
+          <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="errors">
+            <span *ngIf="email?.errors?.['required']">Email is required</span>
+            <span *ngIf="email?.errors?.['email']">Email is invalid</span>
+          </div>
+          <ion-item>
+            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+          </ion-item>
+          <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="errors">
+            <span *ngIf="password?.errors?.['required']">Password is required</span>
+            <span *ngIf="password?.errors?.['minlength']">Password needs to be 6 characters</span>
+          </div>
+        </div>
+        <div class="buttons ion-margin">
+          <ion-button type="submit" expand="block" color="primary" [disabled]="!credentials.valid">Log in</ion-button>
+          <ion-fab-button *ngIf="isBiometricsLoginVisible" [disabled]="isBiometricsLoginDisabled" (click)="loginWithBiometrics()" class="ion-margin" color="success"><ion-icon name="finger-print"></ion-icon></ion-fab-button>
+        </div>
+      </form>
+    </ion-card>
+  </div>
+</ion-content>
